@@ -1,92 +1,1062 @@
-•Use Of Git ---> To Upload Files With Track Of Updation Of Each Line And Files Added.
-.          --> To Work In A Team...such that any developer can makes changes in the repository.
-
-•repository --> Projects in Git
-Commit --> Save Changes
-
-#Some Commands
-.                                                               •Git Commands
-
-•Clone
--Cloning Means to make a clone of a respective repository on your local machine.
--Local (pc , lapton)  , Remote (GitHub).
-git clone - link - (on git , tap the  repo you need the link off and click on the word 'code' in green colour)
-
-•Status
--Status displays the state of code.
-- git status -
-•if you change your code or add a new file in vs then use git status to check if the change has happened on git repo or not.
-•Since now the file is modified or newly made -> we need to add it to git -> - git add filename - or - git add . -(if many files are to be added)
-to commit -> git commit -m "some message"....by doing this commit happens but when you go to git you won't see the change
-
-•Push Command
--used to refresh the git page to see all the changes made(all commitments).(local repo to remote repo)
-- git push origin main - ...origin is the origin repo and main is its default branch.
-- since many changes are made in the code and we need to write the whole git push origin main what we do is
-- use git push -u origin main....now next time when we write - git push - it knows to push in origin repo and main branch 
-
-//4 types of status 
-1. Untracked -> New File Added But In Vs And Not In Git
-2. modifies -> Changes To A Existing Git File in vs but not in git
-3. staged -> file added and ready to be commited
-4. unmodified -> unchanged
-
-•init command 
--used to create a new git repo or add the current written project in git
-use - git init -
-use - git remote add origin link -(the link is generated on github by clicking on repositories from top right corner profile button)(readme off)
-use - git remote -v - -> to verify remote
-use -  git branch - -> to verify branch
-use - git branch -M name - -> to rename the branch
-
-.                                                               •Normal Commands
-
-•- cd - command is used to change directory(going from the inner to outer folder)
-on terminal the name of folder displayed behind the % shows the current folder
-cd -folder name- --> takes u to the folder that you entered.
-
-•- clear - clears the terminal
- 
-•- ls - lists the files and folders under the currect folder
-- ls -a - lists all the file(including the hidden ones)
-
-•to add a new directory i.e. a new folder write - mkdir name - i.e. make directory
-now to check if a repository is a git or not we just use 'ls -a' and if .git is not present we get that it is not under git.
-//line 34
-
-•Branch
--make a copy of the same project
--there are many teams working on the same project
--each team secures a specific branch say -> frontend dev , bug fixer , styling .... branches
-use - git checkout nameOfAnotherBranch- -> it helps to move to another branch
-use - git checkout -b newBranch - -> to create a new branch
-use - git branch -d branchName - -> deletese the branch (deletion of a particular branch will only take place when under another branch)
-
-•••normal flow -> git > new repo > clone > add > commit > push(merge all branches with the main)
-
-•Merging 
-1.
-- git diff branchname - -> (normally compare current branch with the main)
-- git merge branchname - -> to merge two branches
-2. Pull Requests
- while our branch is ready to be merged the person handling the main might get able to recheck the changes you made and then merge it with the main branch
-or might be a case where main branch is getting changed so till then request is not accepted.
--> go to git hub and there is a option of pull request.
+GIT & GITHUB NOTES
+==================
 
 
-•Pull Command
--the merging is now done at github but at local level we dont see any change.
-use - git pull origin main -
-use - git pull origin main --rebase - if changes made on git but not commited and changes then made on the local level
+1. WHAT IS GIT?
+---------------
 
-•Merge Conflict
-•if a change is made in the main branch of a file and another branch in the same file and same line
-now merging it creates a conflict to whether which change is to be finalised
-vscode gives us option -> accept current change , accept incoming change or accept both
+Git is a Version Control System (VCS).
 
-•Undoing changes
-1. change added but not commited - git reset filename -(for particular file) or - git reset - (for all files)
-2. change added and commited - git reset HEAD~1 -  (all the commited things are saved in a row with the latest commit marked as HEAD)
-~1 refers to the latest change in last commit
-use - git log - to check all commits
-3. for multiple commits 
+Git is used to:
+
+- Track changes made to files and code.
+- Keep a history of changes.
+- Work on projects as a team.
+- Allow multiple developers to make changes to the same project.
+
+Git vs GitHub:
+
+- Git     -> Version control system that runs on your computer.
+- GitHub  -> Online platform where Git repositories can be stored and shared.
+
+
+IMPORTANT TERMS
+---------------
+
+Repository (Repo)
+-> A project that is managed by Git.
+
+Local Repository
+-> The Git project stored on your computer.
+
+Remote Repository
+-> The Git project stored on GitHub.
+
+Commit
+-> A saved snapshot of changes in the local repository.
+
+Branch
+-> A separate line of development in a project.
+
+Origin
+-> The default name usually given to the remote GitHub repository.
+
+
+
+2. BASIC GIT WORKFLOW
+---------------------
+
+For an existing project on GitHub:
+
+    GitHub Repository
+           |
+           | git clone
+           v
+    Local Repository
+           |
+           | Modify / Add Files
+           v
+       git status
+           |
+           | git add
+           v
+      Staging Area
+           |
+           | git commit
+           v
+    Local Repository
+           |
+           | git push
+           v
+    GitHub Repository
+
+
+The most important basic flow is:
+
+    git add
+       ↓
+    git commit
+       ↓
+    git push
+
+
+
+3. GIT CLONE
+------------
+
+Purpose:
+-> Creates a copy of a remote GitHub repository on your local computer.
+
+Command:
+
+    git clone <repository-link>
+
+Example:
+
+    git clone https://github.com/username/project.git
+
+To get the repository link:
+
+    GitHub Repository
+          ↓
+       "Code"
+          ↓
+    Copy HTTPS Link
+
+
+Local vs Remote:
+
+    Local  -> Your PC / Laptop
+    Remote -> GitHub
+
+
+
+4. GIT STATUS
+-------------
+
+Purpose:
+-> Shows the current state of your Git repository.
+
+Command:
+
+    git status
+
+It can tell you:
+
+- Which files are modified.
+- Which files are untracked.
+- Which files are staged.
+- Which changes are ready to be committed.
+
+Example:
+
+    Modify a file in VS Code
+             ↓
+        git status
+             ↓
+    Git shows the file as modified.
+
+
+
+5. GIT FILE STATES
+------------------
+
+A file can go through different states:
+
+    Untracked
+        ↓
+    Staged
+        ↓
+    Committed
+        ↓
+    Unmodified
+
+
+1. UNTRACKED
+------------
+
+A new file exists in the project, but Git is not tracking it yet.
+
+Example:
+
+    Create a new file:
+    
+    notes.txt
+
+Git will show it as:
+
+    Untracked
+
+
+2. MODIFIED
+-----------
+
+An already tracked file has been changed.
+
+Example:
+
+    index.html
+
+was already tracked by Git, and you modify it.
+
+Git will show:
+
+    Modified
+
+
+3. STAGED
+---------
+
+The changes have been added to the staging area and are ready
+to be committed.
+
+Command:
+
+    git add filename
+
+or:
+
+    git add .
+
+
+4. UNMODIFIED
+-------------
+
+The file has no new changes since the last commit.
+
+
+
+6. GIT ADD
+----------
+
+Purpose:
+-> Moves changes into the Staging Area.
+
+For one file:
+
+    git add filename
+
+Example:
+
+    git add index.html
+
+
+For multiple files:
+
+    git add .
+
+
+The "." means:
+
+    Add changes from the current directory and its contents.
+
+
+
+7. GIT COMMIT
+-------------
+
+Purpose:
+-> Saves the staged changes as a snapshot in the local Git repository.
+
+Command:
+
+    git commit -m "message"
+
+Example:
+
+    git commit -m "Added login page"
+
+
+IMPORTANT:
+
+A commit does NOT upload the changes to GitHub.
+
+The flow is:
+
+    git add
+       ↓
+    git commit
+       ↓
+    Local Repository
+
+
+To upload the commit to GitHub: 
+
+    git push
+
+
+
+8. GIT PUSH
+-----------
+
+Purpose:
+-> Uploads your local commits to the remote GitHub repository.
+
+Command:
+
+    git push origin main
+
+Here:
+
+    origin -> Name of the remote repository.
+    main   -> Branch that is being pushed.
+
+Flow:
+
+    Local Repository
+           ↓
+       git push
+           ↓
+    GitHub Repository
+
+
+9. GIT PUSH -U
+--------------
+
+Command:
+
+    git push -u origin main
+
+The "-u" sets the upstream relationship between the local
+branch and the remote branch.
+
+After using it once, you can usually use:
+
+    git push
+
+instead of:
+
+    git push origin main
+
+
+
+10. GIT INIT
+------------
+
+Purpose:
+-> Initializes Git in an existing local project.
+
+Command:
+
+    git init
+
+Example:
+
+    MyProject/
+        index.html
+        style.css
+
+Go inside the project:
+
+    cd MyProject
+
+Then:
+
+    git init
+
+
+Git creates a hidden ".git" folder:
+
+    MyProject/
+        .git/
+        index.html
+        style.css
+
+
+The ".git" folder contains Git's repository information.
+
+
+
+11. CONNECT LOCAL REPOSITORY TO GITHUB
+--------------------------------------
+
+After using "git init", connect the local repository to GitHub.
+
+Command:
+
+    git remote add origin <repository-link>
+
+Example:
+
+    git remote add origin https://github.com/username/project.git
+
+
+To check the remote repository:
+
+    git remote -v
+
+This verifies which GitHub repository is connected
+to your local project.
+
+
+
+12. GIT BRANCH
+-------------
+
+A branch is a separate line of development.
+
+Branches are useful when multiple developers or teams
+are working on the same project.
+
+For example:
+
+    main
+      |
+      +------ frontend
+      |
+      +------ backend
+      |
+      +------ bug-fix
+      |
+      +------ styling
+
+
+Possible branches:
+
+    main
+    frontend
+    backend
+    bug-fix
+    styling
+
+
+Why use branches?
+
+-> Developers can work on different features separately
+   without directly changing the main branch.
+
+
+
+13. CHECK BRANCHES
+------------------
+
+Command:
+
+    git branch
+
+Example:
+
+      frontend
+    * main
+      bug-fix
+
+The "*" indicates the branch you are currently on.
+
+
+
+14. CREATE A NEW BRANCH
+-----------------------
+
+Command:
+
+    git checkout -b newBranch
+
+Example:
+
+    git checkout -b frontend
+
+This command:
+
+1. Creates the branch.
+2. Switches to that branch.
+
+
+
+15. SWITCH TO ANOTHER BRANCH
+----------------------------
+
+Command:
+
+    git checkout branchName
+
+Example:
+
+    git checkout frontend
+
+This moves you from your current branch to "frontend".
+
+
+
+16. DELETE A BRANCH
+-------------------
+
+Command:
+
+    git branch -d branchName
+
+Example:
+
+    git branch -d bug-fix
+
+IMPORTANT:
+
+You cannot normally delete the branch you are currently
+working on.
+
+So first switch to another branch:
+
+    git checkout main
+
+Then:
+
+    git branch -d bug-fix
+
+
+
+17. RENAME A BRANCH
+-------------------
+
+To rename the current branch:
+
+    git branch -M main
+
+This is commonly used to rename the current branch to "main".
+
+
+
+18. NORMAL GIT WORKFLOW
+----------------------
+
+For an existing GitHub repository:
+
+    GitHub
+      ↓
+    git clone
+      ↓
+    Local Repository
+      ↓
+    Make Changes
+      ↓
+    git status
+      ↓
+    git add
+      ↓
+    git commit
+      ↓
+    git push
+      ↓
+    GitHub
+
+
+Commands:
+
+    git clone <link>
+
+    git status
+
+    git add .
+
+    git commit -m "Added new feature"
+
+    git push
+
+
+
+19. GIT DIFF
+------------
+
+Purpose:
+-> Shows differences between versions of files.
+
+Command:
+
+    git diff
+
+
+To compare with another branch:
+
+    git diff branchName
+
+Example:
+
+    git diff main
+
+This can be useful to see what changes are different
+between your current branch and another branch.
+
+
+
+20. MERGING BRANCHES
+--------------------
+
+Suppose we have:
+
+    main
+    frontend
+
+
+You finished your work on the "frontend" branch and
+want to merge it into "main".
+
+First switch to main:
+
+    git checkout main
+
+Then merge:
+
+    git merge frontend
+
+
+Conceptually:
+
+    frontend
+       |
+       | Changes
+       v
+      main
+
+
+
+21. PULL REQUEST
+----------------
+
+A Pull Request (PR) is commonly used when working with
+GitHub and teams.
+
+Suppose you are working on:
+
+    frontend branch
+
+After completing your work:
+
+    Create branch
+          ↓
+    Make changes
+          ↓
+    Commit
+          ↓
+    Push branch
+          ↓
+    Create Pull Request
+          ↓
+    Code Review
+          ↓
+    Merge into main
+
+
+A Pull Request allows other developers to:
+
+- Review your changes.
+- Discuss your changes.
+- Request modifications.
+- Approve the changes.
+- Merge the branch into main.
+
+
+
+22. GIT PULL
+------------
+
+Sometimes changes are made on GitHub by another developer.
+
+Your local repository will not automatically have
+those changes.
+
+Use:
+
+    git pull origin main
+
+Purpose:
+
+-> Downloads changes from the remote repository and
+   integrates them into your current branch.
+
+Flow:
+
+    GitHub
+       ↓
+    git pull
+       ↓
+    Local Repository
+
+
+Another command:
+
+    git pull origin main --rebase
+
+"--rebase" tells Git to reapply your local commits
+on top of the updated remote history instead of using
+the usual merge approach.
+
+
+
+23. MERGE CONFLICT
+------------------
+
+A merge conflict happens when Git cannot automatically
+decide which changes should be kept.
+
+Example:
+
+    main branch:
+
+    Line 10 -> Hello World
+
+
+    frontend branch:
+
+    Line 10 -> Hello Git
+
+
+If both branches changed the same part of the same file,
+Git may create a conflict while merging.
+
+VS Code may show options such as:
+
+    Accept Current Change
+    Accept Incoming Change
+    Accept Both Changes
+
+
+You need to decide which code should remain, or manually
+combine the changes.
+
+After resolving the conflict:
+
+    git add .
+
+    git commit -m "Resolved merge conflict"
+
+
+
+24. UNDOING CHANGES
+-------------------
+
+The method used to undo a change depends on
+what stage the change is currently in.
+
+
+
+CASE 1: CHANGE MADE BUT NOT COMMITTED
+-------------------------------------
+
+If you modified a file but have NOT committed it:
+
+    git restore filename
+
+Example:
+
+    git restore index.html
+
+This discards the uncommitted changes in that file.
+
+WARNING:
+
+Be careful because the discarded changes may not
+be recoverable.
+
+
+
+CASE 2: CHANGE WAS ADDED BUT NOT COMMITTED
+------------------------------------------
+
+Suppose you did:
+
+    git add filename
+
+but you have not committed yet.
+
+To remove the file from the staging area:
+
+    git restore --staged filename
+
+This does NOT delete your changes.
+
+It only removes the file from the staging area.
+
+The changes remain in your working directory.
+
+
+
+CASE 3: CHANGE WAS COMMITTED
+----------------------------
+
+To undo the latest commit while keeping the changes
+in your working directory:
+
+    git reset HEAD~1
+
+
+Understanding HEAD:
+
+    HEAD
+    ↓
+    Current / Latest Commit
+
+
+    HEAD~1
+    ↓
+    Commit immediately before HEAD
+
+
+So:
+
+    git reset HEAD~1
+
+moves HEAD back by one commit.
+
+
+
+25. GIT LOG
+-----------
+
+Purpose:
+-> Shows the commit history.
+
+Command:
+
+    git log
+
+It shows information such as:
+
+- Commit ID
+- Author
+- Date
+- Commit message
+
+
+Conceptually:
+
+    Latest Commit  ← HEAD
+          ↓
+    Previous Commit
+          ↓
+    Older Commit
+          ↓
+    Older Commit
+
+
+
+26. BASIC TERMINAL COMMANDS
+---------------------------
+
+These are normal terminal commands, not specifically Git commands.
+
+
+
+CD
+--
+
+Purpose:
+-> Changes the current directory.
+
+Command:
+
+    cd folderName
+
+Example:
+
+    cd MyProject
+
+This moves you into the "MyProject" folder.
+
+To move one level back:
+
+    cd ..
+
+
+On the terminal, the folder shown before the "%" prompt
+usually indicates your current location.
+
+
+
+CLEAR
+-----
+
+Purpose:
+-> Clears the terminal screen.
+
+Command:
+
+    clear
+
+
+
+LS
+--
+
+Purpose:
+-> Lists files and folders in the current directory.
+
+Command:
+
+    ls
+
+
+To show hidden files as well:
+
+    ls -a
+
+Git's ".git" folder is hidden, so:
+
+    ls -a
+
+can be used to check whether a directory is
+initialized as a Git repository.
+
+If ".git" exists:
+
+    .git
+
+then Git has been initialized in that directory.
+
+
+
+MKDIR
+-----
+
+Purpose:
+-> Creates a new directory (folder).
+
+Command:
+
+    mkdir folderName
+
+Example:
+
+    mkdir MyProject
+
+This creates:
+
+    MyProject/
+
+
+
+27. IMPORTANT GIT COMMANDS - QUICK REVISION
+-------------------------------------------
+
+    git init
+    -> Initialize a Git repository.
+
+    git clone <link>
+    -> Clone a remote repository.
+
+    git status
+    -> Check the current Git status.
+
+    git add <file>
+    -> Stage a specific file.
+
+    git add .
+    -> Stage multiple changes.
+
+    git commit -m "message"
+    -> Save staged changes as a commit.
+
+    git push
+    -> Upload local commits to GitHub.
+
+    git push origin main
+    -> Push local main branch to remote main branch.
+
+    git pull origin main
+    -> Get changes from remote main branch.
+
+    git remote -v
+    -> Check connected remote repositories.
+
+    git branch
+    -> Show branches.
+
+    git checkout branchName
+    -> Switch to another branch.
+
+    git checkout -b branchName
+    -> Create and switch to a new branch.
+
+    git branch -d branchName
+    -> Delete a branch.
+
+    git branch -M main
+    -> Rename the current branch to main.
+
+    git diff
+    -> Show differences.
+
+    git merge branchName
+    -> Merge another branch into the current branch.
+
+    git log
+    -> Show commit history.
+
+    git restore filename
+    -> Discard uncommitted changes in a file.
+
+    git restore --staged filename
+    -> Remove a file from staging.
+
+    git reset HEAD~1
+    -> Move HEAD back by one commit.
+
+
+
+28. COMPLETE GIT FLOW TO REMEMBER
+---------------------------------
+
+FOR A PROJECT ALREADY ON GITHUB:
+
+    git clone <link>
+            ↓
+    Make / Modify Files
+            ↓
+    git status
+            ↓
+    git add .
+            ↓
+    git commit -m "message"
+            ↓
+    git push
+            ↓
+          GitHub
+
+
+FOR A NEW LOCAL PROJECT:
+
+    Create Project
+         ↓
+    git init
+         ↓
+    Create GitHub Repository
+         ↓
+    git remote add origin <link>
+         ↓
+    git add .
+         ↓
+    git commit -m "Initial commit"
+         ↓
+    git push -u origin main
+         ↓
+       GitHub
+
+
+
+29. THE MOST IMPORTANT CONCEPT
+------------------------------
+
+Remember this:
+
+    WORKING DIRECTORY
+           ↓
+       git add
+           ↓
+     STAGING AREA
+           ↓
+      git commit
+           ↓
+    LOCAL REPOSITORY
+           ↓
+       git push
+           ↓
+    REMOTE REPOSITORY
+        (GitHub)
+
+      
+    
+In simple words:
+
+    git add
+    -> "I want to include these changes."
+
+    git commit
+    -> "Save these changes in Git."
+
+    git push
+    -> "Upload these commits to GitHub."
+
+    git pull
+    -> "Bring the latest changes from GitHub."
+    
+
+30. ONE-LINE MEMORY TRICK
+-------------------------
+
+    ADD → COMMIT → PUSH
+
+    ADD
+    -> Prepare changes.
+
+    COMMIT
+    -> Save changes locally.
+
+    PUSH
+    -> Upload changes to GitHub.
