@@ -1,11 +1,4 @@
-GIT & GITHUB NOTES
-==================
 
-
-1. WHAT IS GIT?
----------------
-
-Git is a Version Control System (VCS).
 
 Git is used to:
 
